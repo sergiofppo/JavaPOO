@@ -1,4 +1,4 @@
-package POO.Estudos.Caneta;
+package POO.Estudos.aula002;
 
 public class TesteCaneta {
     public static void main(String[] args) {

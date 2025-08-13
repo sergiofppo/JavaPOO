@@ -1,4 +1,4 @@
-package POO.Estudos.Caneta;
+package POO.Estudos.aula002;
 
 public class Caneta {
     String modelo;
