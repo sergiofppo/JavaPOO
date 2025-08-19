@@ -1,6 +1,6 @@
 package POO.Exercicios.Ex001;
 
-public class Carro {
+public class Carro implements SistemaCarro {
     private String marca;
     private String modelo;
     private int ano;
@@ -8,17 +8,22 @@ public class Carro {
     private int hp;
     private double torque;
     private boolean ligado;
+    private boolean setaDireita;
+    private boolean setaEsquerda;
+    private boolean desligarSeta;
 
     public void status() {
-        System.out.println("Modelo: " + this.modelo);
-        System.out.println("Marca: " + this.marca);
-        System.out.println("Ano: " + this.ano);
-        System.out.println("Cor: " + this.cor);
-        System.out.println("hp: " + this.hp);
-        System.out.println("Torque: " + this.torque);
+        System.out.println("Modelo: " + this.getModelo());
+        System.out.println("Marca: " + this.getMarca());
+        System.out.println("Ano: " + this.getAno());
+        System.out.println("Ano: " + this.getCor());
+        System.out.println("Cor: " + this.getCor());
+        System.out.println("hp: " + this.getHp());
+        System.out.println("Torque: " + this.getTorque());
     }
 
     public Carro(String m, String mrk, String c, int a, int h, double t, boolean l) {
+        this.setLigado(false);
         this.modelo = m;
         this.marca = mrk;
         this.cor = c;
@@ -26,29 +31,79 @@ public class Carro {
         this.hp = h;
         this.torque = t;
         this.ligado = l;
-
-
     }
 
-    public void ligar () {
-        this.ligado = true;
+    @Override
+    public void ligar() {
+        this.setLigado(true);
+        System.out.println("Ligado: " +this.getLigado());
     }
 
+    @Override
     public void desligar() {
-        this.ligado = false;
+        this.setLigado(false);
+        System.out.println("Ligado: " +this.getLigado());
     }
 
-    public void acelerar() {
-        if (this.ligado == true) {
-            System.out.println("VRUUUUUUUUUUUUUUUUUUUUM!");
+    @Override
+    public void setaDireita() {
+        if (getLigado()) {
+            this.setSetaDireita(true);
+            this.setSetaEsquerda(false);
+            System.out.println("Dando Seta pra Direita!");
         } else {
-            System.out.println("Erro! De partida no motor!");
+            System.out.println("Ligue o Carro!");
         }
     }
 
-    public String getModelo() {
-        return this.modelo;
+    @Override
+    public void setaEsquerda() {
+        if (getLigado()) {
+            this.setSetaDireita(false);
+            this.setSetaEsquerda(true);
+            System.out.println("Dando Seta pra Esquerda!");
+        } else {
+            System.out.println("Ligue o Carro!");
+        }
     }
+
+    @Override
+    public void desligarSeta() {
+        if (getLigado()) {
+            if (getSetaDireita() || getSetaEsquerda())
+                this.setSetaEsquerda(false);
+                this.setSetaDireita(false);
+                this.setDesligarSeta(true);
+                System.out.println("Setas Desligadas!");
+        }   else {
+            System.out.println("Ligue o Carro!");
+        }
+    }
+
+    @Override
+    public void freiar() {
+        if (getLigado()) {
+            System.out.println("ACABOU O FREIO!");
+        } else {
+            System.out.println("Ligue o Carro!");
+        }
+    }
+
+    @Override
+    public void acelerar() {
+        if (getLigado()) {
+            System.out.println("VRUUUUUUUUUUUM!");
+        } else {
+            System.out.println("Ligue o Carro!");
+        }
+    }
+
+    @Override
+    public void buzinar() {
+        System.out.println("BIBI!");
+    }
+
+    public String getModelo() { return this.modelo; }
 
     public void setModelo(String m) {
         this.modelo = m;
@@ -102,6 +157,12 @@ public class Carro {
         this.ligado = l;
     }
 
+    public boolean getSetaDireita() { return this.setaDireita; }
+    public void setSetaDireita (boolean sd) { this.setaDireita = sd; }
 
+    public boolean getSetaEsquerda() { return this.setaEsquerda; }
+    public void setSetaEsquerda (boolean se) { this.setaEsquerda = se; }
 
+    public boolean getDesligarSeta() { return this.desligarSeta; }
+    public void setDesligarSeta (boolean d) { this.desligarSeta = d; }
 }
