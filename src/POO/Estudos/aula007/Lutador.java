@@ -12,18 +12,18 @@ public class Lutador {
     private int empates;
 
     public Lutador(String no, String na, int i, float a, float p, int v, int d, int e) {
-       setNome(no);
-       setNacionalidade(na);
-       setIdade(i);
-       setAltura(a);
-       setPeso(p);
-       setVitorias(v);
-       setDerrotas(d);
-       setEmpates(e);
-
+        this.setNome(no);
+        this.setNacionalidade(na);
+        this.setIdade(i);
+        this.setAltura(a);
+        this.setPeso(p);
+        this.setVitorias(v);
+        this.setDerrotas(d);
+        this.setEmpates(e);
     }
 
     public void apresentar() {
+        System.out.println("-----------------------------");
         System.out.println("Nome: " +getNome());
         System.out.println("Nacionalidade: " +getNacionalidade());
         System.out.println("Idade: " +getIdade());
@@ -33,26 +33,28 @@ public class Lutador {
         System.out.println("Vitorias: " +getVitorias());
         System.out.println("Derrotas: " +getDerrotas());
         System.out.println("Empates: " +getEmpates());
+        System.out.println("----------------------------");
+
     }
 
     public void Status() {
         System.out.println(getNome());
-        System.out.println("Eh um Peso: " +getPeso());
+        System.out.println("Eh um Peso: " + getCategoria());
         System.out.println(getVitorias()+ " vitorias");
         System.out.println(getDerrotas()+ " derrotas");
         System.out.println(getEmpates()+ " empates");
     }
 
     public void ganharLuta() {
-        setVitorias(getVitorias() + 1);
+        this.setVitorias(this.getVitorias() + 1);
     }
 
     public void perderLuta() {
-        setDerrotas(getDerrotas() + 1);
+        this.setDerrotas(this.getDerrotas() + 1);
     }
 
     public void empatarLuta() {
-        setEmpates(getEmpates() + 1);
+        this.setEmpates(this.getEmpates() + 1);
     }
 
     public String getNome() { return this.nome; }
@@ -70,24 +72,24 @@ public class Lutador {
     public float getPeso() { return this.peso; }
     public void setPeso(float p) {
         this.peso = p;
-        setCategoria("");
+        this.setCategoria();
     }
 
     public String getCategoria() { return this.categoria;}
-    public void setCategoria(String c) {
-        this.categoria = c;
-        if (getPeso() < 52.2) {
-            setCategoria("Invalido");
-        } else if (getPeso() <= 70.3) {
-            setCategoria("Leve");
-        } else if (getPeso() <= 83.9) {
-            setCategoria("Medio");
-        } else if (getPeso() <= 120.2 ) {
-            setCategoria("Pesado");
+    private void setCategoria() {
+        if (this.peso < 52.2) {
+            this.categoria = "Inválido";
+        } else if (this.peso <= 70.3) {
+            this.categoria = "Leve";
+        } else if (this.peso <= 83.9) {
+            this.categoria = "Médio";
+        } else if (this.peso <= 120.2) {
+            this.categoria = "Pesado";
         } else {
-            setCategoria("Invalido");
+            this.categoria = "Inválido";
         }
     }
+
 
     public int getVitorias() { return this.vitorias;}
     public void setVitorias(int v) { this.vitorias = v;}
